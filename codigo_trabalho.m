@@ -25,6 +25,8 @@ vx(1) = 0;
 vy(1) = 0;
 vz(1) = 0;
 
+time = zeros(1,m);
+
 # Descobrir a rotacao da atitude
 m = length(ax_ms2);
 phi = zeros(1,m);
@@ -86,7 +88,24 @@ for i = 1 : m
   rx(i+1) = rx(i) + vx(i+1) * dt(i);
   ry(i+1) = ry(i) + vy(i+1) * dt(i);
   rz(i+1) = rz(i) + vz(i+1) * dt(i);
+
+  time(i+1) = time(i) + dt(i);
 endfor
+
+# Plot posicao cartesiana
+figure;
+subplot(3,1,1);
+plot(time,rx);
+ylabel('R_x (m)');
+subplot(3,1,2);
+plot(time,ry);
+ylabel('R_y (m)');
+subplot(3,1,3);
+plot(time,rz);
+ylabel('R_z (m)');
+
+
+
 
 
 
